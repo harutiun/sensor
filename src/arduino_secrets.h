@@ -2,7 +2,7 @@
 //#define SECRET_PASS "patoAnda01_!"
 
 #define SECRET_SSID "Sensor"
-#define SECRET_PASS "WmA85RpRu26ZpPDp"
+#define SECRET_PASS ""
 
 //#define SECRET_SSID "MOVISTAR_6DA7"
 //#define SECRET_PASS "6A375011BB6F5064A1C8"
