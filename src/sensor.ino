@@ -9,18 +9,14 @@
 
 
 /*
- * School Version 
- * No Mic
- * No CO2
- * No extra sensors
- * REMOVE COMMENTS FROM SensObj::Start
+ * School Version V01_31.01
+ * all sensors connected
+ * issues with noise sensor
  */
  
 
 //#define SENSOR_DEBUG
 //#define DEBUG_VOC_AND_CO2
- 
-
  
 
 // from https://github.com/mpflaga/Arduino-MemoryFree see also https://playground.arduino.cc/Code/AvailableMemory/
@@ -43,19 +39,11 @@
 const int pinSoundSensor = A0;
 const int pinAirQlSensor = A2;
 
-/*
- * Correction factors
- * */
-
 
 const char ssid[]     = SECRET_SSID;    // Network SSID (name)
 const char pass[]     = SECRET_PASS;    // Network password (use for WPA, or use as key for WEP)
 int status            = WL_IDLE_STATUS;     // the Wifi radio's status
 
-//#define BROKER_IP       "192.168.1.44" // RPI4
-//#define BROKER_IP       "192.168.1.43" // RPI3
-#define BROKER_IP         "192.168.30.100" // RPI4_03 SensorServer
-//#define BROKER_IP       "192.168.1.52" // important: you have to change this to your IP brocker Addres
 const int   port        = 1883;
 String      sendTopic   = "/arduino/";  
 const int   sensorId    = 9;  
