@@ -35,15 +35,14 @@
 
 #include "arduino_secrets.h"
 
-
 const int pinSoundSensor = A0;
 const int pinAirQlSensor = A2;
-
 
 const char ssid[]     = SECRET_SSID;    // Network SSID (name)
 const char pass[]     = SECRET_PASS;    // Network password (use for WPA, or use as key for WEP)
 int status            = WL_IDLE_STATUS;     // the Wifi radio's status
 
+#define BROKER_IP         "192.168.30.100" // RPI4_03 SensorServer
 const int   port        = 1883;
 String      sendTopic   = "/arduino/";  
 const int   sensorId    = 9;  
