@@ -49,22 +49,26 @@ const int   sensorId    = 9;
 String      sensorLabel = "-";
 
 #include "MQTT_Subs.h"  // include all stuff about subscriptions
-#include "SensObj.h"
-
+#include "SensObj.h"    // include all stuff about the sensors, packed as a class SensObj 
 
 SensObj sensor;
 
 
-
-
+// Try to connect to SSID and Broker 
 void connect() {
   int sleepTime;
-  // add a random timeshift (0-20sec), to avoid that two sensors connect at the same time
+  
+  // wait a random shifttime (0-20sec), to avoid that two sensors connect to the broker in the same time intervals
+  // inside NodeRed, as only one database is used, if two messages arrive in the same time interval, the broker takes only one of them
+  // this timeinterval can be nanosec, milisec, sec, min, ... I use nanosec, but in order to increase the pobability of a different time
+  // each arduino waits a random time (see classic example probability same birthday of students in a classroom) 
   sleepTime = random(20000);
   Serial.print("Sleeping ");
   Serial.print(sleepTime);
   Serial.println(" ms.");
   delay(sleepTime);
+  
+  
   lastMillis = lastMillis - sleepTime;
   
   Serial.println("Connecting.");
@@ -74,7 +78,7 @@ void connect() {
   Serial.print("WifiStatus: ");
   Serial.println(WiFi.status());
 
-
+  // connect to SSID
   if ( WiFi.status() != WL_CONNECTED) {
     nWifiLost++;
     while (WiFi.begin(ssid, pass) != WL_CONNECTED) {
@@ -88,7 +92,7 @@ void connect() {
   Serial.println("Wifi Connected.");
       
 
-
+  // Connect to MQTT broker  
   if ((WiFi.status() == WL_CONNECTED) && (client.connect(myMacAddress.c_str(), MQTT_USER, MQTT_PASS))) {  
     Serial.print("Connected to connect to MQTT broker: ");
     Serial.println(BROKER_IP);
@@ -150,19 +154,19 @@ void setup() {
 
 void loop(){
   // call loop() regularly to allow the library to send MQTT keep alives which
-  // avoids being disconnected by the broker; delay(10) in hope to fix disconnection issues https://github.com/256dpi/arduino-mqtt
-  //Serial.println("INSIDE LOOP.");
+  // avoids being disconnected by the broker; delay(20) in hope to fix disconnection issues https://github.com/256dpi/arduino-mqtt
+  /// Serial.println("INSIDE LOOP.");
 
 
   if ( client.connected() ) { 
-    //Serial.println("Connected and loop.");
+    /// Serial.println("Connected and loop.");
     client.loop(); 
    } else
   { 
-    //Serial.println("Not connected. Connecting...");
+    /// Serial.println("Not connected. Connecting...");
     connect();
   }
-  //Serial.println("Outside If.");
+  /// Serial.println("Outside If.");
 
   delay(20);
   
@@ -173,11 +177,11 @@ void loop(){
     lastMillis = millis();
 
     String dataString = "";
-    dataString = "{\"mac\":\""     + myMacAddress + "\",\"ID\":" + String(sensorId); 
-    dataString += ",\"lbl\":\""   + sensorLabel + "\"";    
+    dataString = "{\"mac\":\""   + myMacAddress + "\",\"ID\":" + String(sensorId); 
+    dataString += ",\"lbl\":\""  + sensorLabel + "\"";    
     dataString += ",\"RAM\":"    + String(freeMemory());
-    dataString += ",\"RSSI\":"     + String(WiFi.RSSI());
-    dataString += ",\"nRc\":"     + String(nReconnections);
+    dataString += ",\"RSSI\":"   + String(WiFi.RSSI());
+    dataString += ",\"nRc\":"    + String(nReconnections);
     dataString += ",\"nWifiL\":" + String(nWifiLost);
     sensor.addMeasurement( dataString ); 
     dataString += "}";
