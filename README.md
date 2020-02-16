@@ -1,4 +1,4 @@
-# General purpose
+# Sensor
 This project consists of an air quality data logger. I am a teacher, and our school wants to know the air quality and the environment values in classrooms and common spaces, especially while the children are there. The stations will placed in different rooms in our school, powered by a charger, and will access the school's WIFI.
 
 As hardware we use Arduinos, with environmental shields, to measure temperature, humidity and more values, and also different SeeedStudio Grove sensors.
@@ -16,14 +16,13 @@ As Hardware we decided to use: Arduino mkr 1010 board, with MKR EnvShield and MK
 -ARDUINO MKR ENV SHIELD: https://store.arduino.cc/arduino-mkr-env-shield
 -ARDUINO MKR CONNECTOR CARRIER (GROVE COMPATIBLE): https://store.arduino.cc/arduino-mkr-connector-carrier
 
--Grove - VOC and eCO2 Gas Sensor (SGP30): https://www.seeedstudio.com/Grove-VOC-and-eCO2-Gas-Sensor-SGP30.html
 -Grove - Air quality sensor v1.3: https://www.seeedstudio.com/Grove-Air-quality-sensor-v1-3-p-2439.html
 -Grove - Sound Sensor: https://www.seeedstudio.com/Grove-Sound-Sensor.html
+-Grove - VOC and eCO2 Gas Sensor (SGP30): https://www.seeedstudio.com/Grove-VOC-and-eCO2-Gas-Sensor-SGP30.html
 -Grove - Laser PM2.5 Sensor (HM3301): http://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301/
+-Grove - Grove-I2C-Hub: https://www.seeedstudio.com/Grove-I2C-Hub.html
 
-As this is a school project, we will start with simple MKR 1010 projects, and then gradually scale up. In the end we will set up the whole station, applying things that the boys and girls have worked on before.
+The VOC and eCO2 Gas Sensor, and the Laser PM2.5 Sensor use the i2c interface, but the mkr1010 only has one i2c port. 
 
-# About me
-I am a secondary school teacher, teaching the subjects Biology, German Culture and OFFICE/General Computer Science. Kawum. At the beginning of the school year I was asked to set up a series of environmental measurement stations in our school, in order to measure and monitor the air quality there. It was focused as a project to be done partly with students, but with a real production purpose. To be honest, I am a mathematician, have programmed for several years, and I knew a little about Arduino, without having come to make any project until that moment, only some workshop of lighting leds. At the beginning I found it quite a simple task. I knew that measuring the temperature is one of the first exercises you learn with Arduino. 
-I started on my own with a WeMos board, borrowed from a friend, and a DHT11 sensor, uploading the data via WiFi to https://thingspeak.com/. Things got complicated when I was told that many other values had to be measured as well, ... I didn't know where to go anymore, as I couldn't find simple shields that could measure all those values. And I found myself unable to weld a single wire, and with students... Ufff. So I asked some experts for help, and was led back to the world of arduino, mkr1010, with environmental shields, and GrooveConnector. As sensors, Seedstudio at 3.3V. The sensors are plug and play. It's more expensive than other stuff, but it's solid and easy to use.
+
 
