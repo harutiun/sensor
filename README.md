@@ -1,5 +1,5 @@
 # General purpose
-This project consists of an air quality measurement data logger. I work as teacher, and our school wants to know the air quality and the environment in classrooms and common spaces, especially while the children are in class. The stations will be in the school, powered by a charger, and will access the school's WIFI.
+This project consists of an air quality data logger. I am a teacher, and our school wants to know the air quality and the environment values in classrooms and common spaces, especially while the children are there. The stations will placed in different rooms in our school, powered by a charger, and will access the school's WIFI.
 
 As hardware we use Arduinos, with environmental shields, to measure temperature, humidity and more values, and also different SeeedStudio Grove sensors.
 
